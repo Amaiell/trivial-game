@@ -3,15 +3,15 @@ import pygame as pg
 # create classes to define different elements
 class Pawn(pg.sprite.Sprite):
 
-    def __init__(self,pos):
+    def __init__(self,pos,nb):
         super().__init__()
-        self.init_state = 0;
-        self.image = pg.image.load('assets/images/pawn2.png')
-        self.image= pg.transform.scale(self.image, (55,50))
+        self.nb = nb;
+        self.image = pg.image.load('assets/images/pawn'+str(self.nb)+'.png')
+        self.image= pg.transform.scale(self.image, (75,70))
         self.rect = self.image.get_rect()
         self.rect.center = pos
-        #self.rect.x = 400
-        #self.rect.y = 500
+        self.rect.x = 800
+        self.rect.y = 150*nb
         self.click = False
         
     def check_click(self, pos):
@@ -33,3 +33,4 @@ class Pawn(pg.sprite.Sprite):
         if self.click:
             self.rect.move_ip(pg.mouse.get_rel())
             self.rect.clamp_ip(screen_rect)
+    #def draw(self):
